@@ -267,7 +267,7 @@ try {
       ) {
         logger.log(
           `Yesterday's flowmeter reading should be same with yesterday's, but different!`,
-          warning
+          error
         );
       } else if (!Number(flowmeters_entry_exists)) {
         await connection.query(
