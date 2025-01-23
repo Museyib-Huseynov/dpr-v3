@@ -400,45 +400,6 @@ DELIMITER ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
--- Temporary view structure for view `new_view`
---
-
-DROP TABLE IF EXISTS `new_view`;
-/*!50001 DROP VIEW IF EXISTS `new_view`*/;
-SET @saved_cs_client     = @@character_set_client;
-/*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `new_view` AS SELECT 
- 1 AS `platform_name`,
- 1 AS `well_name`,
- 1 AS `id`,
- 1 AS `well_id`,
- 1 AS `report_date_id`,
- 1 AS `flowmeter`,
- 1 AS `well_uptime_hours`,
- 1 AS `choke`,
- 1 AS `pqa`,
- 1 AS `phf`,
- 1 AS `pba`,
- 1 AS `p6x9`,
- 1 AS `P9x13`,
- 1 AS `p13x20`,
- 1 AS `liquid_ton`,
- 1 AS `total_gas`,
- 1 AS `gaslift_gas`,
- 1 AS `reported_water_cut`,
- 1 AS `water_cut`,
- 1 AS `mechanical_impurities`,
- 1 AS `oil_density`,
- 1 AS `oil_loss_ton`,
- 1 AS `created_at`,
- 1 AS `ümumi_maye`,
- 1 AS `neft_ton`,
- 1 AS `su_ton`,
- 1 AS `neft_m3`,
- 1 AS `semt_qazi`*/;
-SET character_set_client = @saved_cs_client;
-
---
 -- Table structure for table `ogpd`
 --
 
@@ -490,45 +451,6 @@ LOCK TABLES `platforms` WRITE;
 INSERT INTO `platforms` VALUES (9,'10',1),(10,'11',1),(11,'13',1),(12,'14',1),(13,'15',1),(14,'19',1),(1,'2',1),(2,'3',1),(3,'4',1),(4,'5',1),(5,'6',1),(6,'7',1),(7,'8',1),(8,'9',1);
 /*!40000 ALTER TABLE `platforms` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Temporary view structure for view `prod_mehsul`
---
-
-DROP TABLE IF EXISTS `prod_mehsul`;
-/*!50001 DROP VIEW IF EXISTS `prod_mehsul`*/;
-SET @saved_cs_client     = @@character_set_client;
-/*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `prod_mehsul` AS SELECT 
- 1 AS `platform_name`,
- 1 AS `well_name`,
- 1 AS `id`,
- 1 AS `well_id`,
- 1 AS `report_date_id`,
- 1 AS `flowmeter`,
- 1 AS `well_uptime_hours`,
- 1 AS `choke`,
- 1 AS `pqa`,
- 1 AS `phf`,
- 1 AS `pba`,
- 1 AS `p6x9`,
- 1 AS `P9x13`,
- 1 AS `p13x20`,
- 1 AS `liquid_ton`,
- 1 AS `total_gas`,
- 1 AS `gaslift_gas`,
- 1 AS `reported_water_cut`,
- 1 AS `water_cut`,
- 1 AS `mechanical_impurities`,
- 1 AS `oil_density`,
- 1 AS `oil_loss_ton`,
- 1 AS `created_at`,
- 1 AS `ümumi_maye`,
- 1 AS `neft_ton`,
- 1 AS `su_ton`,
- 1 AS `neft_m3`,
- 1 AS `semt_qazi`*/;
-SET character_set_client = @saved_cs_client;
 
 --
 -- Table structure for table `production_methods`
@@ -1029,42 +951,6 @@ DELIMITER ;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `new_view`
---
-
-/*!50001 DROP VIEW IF EXISTS `new_view`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb4 */;
-/*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
-/*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `new_view` AS select `p`.`name` AS `platform_name`,`w`.`name` AS `well_name`,`dwp`.`id` AS `id`,`dwp`.`well_id` AS `well_id`,`dwp`.`report_date_id` AS `report_date_id`,`dwp`.`flowmeter` AS `flowmeter`,`dwp`.`well_uptime_hours` AS `well_uptime_hours`,`dwp`.`choke` AS `choke`,`dwp`.`pqa` AS `pqa`,`dwp`.`phf` AS `phf`,`dwp`.`pba` AS `pba`,`dwp`.`p6x9` AS `p6x9`,`dwp`.`P9x13` AS `P9x13`,`dwp`.`p13x20` AS `p13x20`,`dwp`.`liquid_ton` AS `liquid_ton`,`dwp`.`total_gas` AS `total_gas`,`dwp`.`gaslift_gas` AS `gaslift_gas`,`dwp`.`reported_water_cut` AS `reported_water_cut`,`dwp`.`water_cut` AS `water_cut`,`dwp`.`mechanical_impurities` AS `mechanical_impurities`,`dwp`.`oil_density` AS `oil_density`,`dwp`.`oil_loss_ton` AS `oil_loss_ton`,`dwp`.`created_at` AS `created_at`,`dwp`.`liquid_ton` AS `ümumi_maye`,round((`dwp`.`liquid_ton` - ((`dwp`.`liquid_ton` * `dwp`.`water_cut`) / 100)),2) AS `neft_ton`,round(((`dwp`.`liquid_ton` * `dwp`.`water_cut`) / 100),2) AS `su_ton`,round(((`dwp`.`liquid_ton` - ((`dwp`.`liquid_ton` * `dwp`.`water_cut`) / 100)) / `dwp`.`oil_density`),2) AS `neft_m3`,round((((`dwp`.`total_gas` - `dwp`.`gaslift_gas`) * `dwp`.`well_uptime_hours`) / 24),0) AS `semt_qazi` from ((((`daily_well_parameters` `dwp` join `wells` `w` on((`dwp`.`well_id` = `w`.`id`))) join `platforms` `p` on((`w`.`platform_id` = `p`.`id`))) join `well_stock` `ws` on((`dwp`.`well_id` = `ws`.`well_id`))) join `report_dates` `rd` on((`dwp`.`report_date_id` = `rd`.`id`))) where (`ws`.`well_stock_sub_category_id` = 1) order by `dwp`.`report_date_id` */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `prod_mehsul`
---
-
-/*!50001 DROP VIEW IF EXISTS `prod_mehsul`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb4 */;
-/*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
-/*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `prod_mehsul` AS select `p`.`name` AS `platform_name`,`w`.`name` AS `well_name`,`dwp`.`id` AS `id`,`dwp`.`well_id` AS `well_id`,`dwp`.`report_date_id` AS `report_date_id`,`dwp`.`flowmeter` AS `flowmeter`,`dwp`.`well_uptime_hours` AS `well_uptime_hours`,`dwp`.`choke` AS `choke`,`dwp`.`pqa` AS `pqa`,`dwp`.`phf` AS `phf`,`dwp`.`pba` AS `pba`,`dwp`.`p6x9` AS `p6x9`,`dwp`.`P9x13` AS `P9x13`,`dwp`.`p13x20` AS `p13x20`,`dwp`.`liquid_ton` AS `liquid_ton`,`dwp`.`total_gas` AS `total_gas`,`dwp`.`gaslift_gas` AS `gaslift_gas`,`dwp`.`reported_water_cut` AS `reported_water_cut`,`dwp`.`water_cut` AS `water_cut`,`dwp`.`mechanical_impurities` AS `mechanical_impurities`,`dwp`.`oil_density` AS `oil_density`,`dwp`.`oil_loss_ton` AS `oil_loss_ton`,`dwp`.`created_at` AS `created_at`,`dwp`.`liquid_ton` AS `ümumi_maye`,round((`dwp`.`liquid_ton` - ((`dwp`.`liquid_ton` * `dwp`.`water_cut`) / 100)),2) AS `neft_ton`,round(((`dwp`.`liquid_ton` * `dwp`.`water_cut`) / 100),2) AS `su_ton`,round(((`dwp`.`liquid_ton` - ((`dwp`.`liquid_ton` * `dwp`.`water_cut`) / 100)) / `dwp`.`oil_density`),2) AS `neft_m3`,round((((`dwp`.`total_gas` - `dwp`.`gaslift_gas`) * `dwp`.`well_uptime_hours`) / 24),0) AS `semt_qazi` from (((`daily_well_parameters` `dwp` join `wells` `w` on((`dwp`.`well_id` = `w`.`id`))) join `platforms` `p` on((`w`.`platform_id` = `p`.`id`))) join `well_stock` `ws` on((`dwp`.`well_id` = `ws`.`well_id`))) where (`ws`.`well_stock_sub_category_id` = 1) order by `dwp`.`report_date_id` */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -1075,4 +961,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-01-23 19:16:06
+-- Dump completed on 2025-01-23 19:24:32
