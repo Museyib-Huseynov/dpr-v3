@@ -18,6 +18,8 @@ SELECT
     dwp.p9x13 AS P9x13,
     dwp.p13x20 AS P13x20,
     dwp.liquid_ton AS liquid_ton,
+    TRUNCATE(dwp.liquid_ton * (dwp.water_cut / 100) / (dwp.oil_density * (1 - (dwp.water_cut / 100)) + (dwp.water_cut / 100)), 1) AS water_ton,
+    TRUNCATE(dwp.liquid_ton * dwp.oil_density * (1 - (dwp.water_cut / 100)) / (dwp.oil_density * (1 - (dwp.water_cut / 100)) + (dwp.water_cut / 100)), 1) AS oil_ton,
     dwp.total_gas AS total_gas,
     dwp.gaslift_gas AS gaslift_gas,
     dwp.reported_water_cut AS reported_water_cut,
