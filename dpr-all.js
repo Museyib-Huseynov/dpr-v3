@@ -895,9 +895,11 @@ try {
               water_cut,
               mechanical_impurities,
               oil_density,
-              (liquid_ton / 24) *
+              ((liquid_ton / 24) *
+                (24 - well_uptime_hours) *
                 (1 - water_cut / 100) *
-                (24 - well_uptime_hours),
+                oil_density) /
+                (oil_density * (1 - water_cut / 100) + water_cut / 100),
             ];
 
             if (!Number(daily_well_parameters_entry_exists)) {
