@@ -20,11 +20,13 @@ let logger_without_timestamp = false;
 const success = 'SUCCESS';
 const error = 'ERROR';
 const warning = 'WARNING';
+const alarm = 'ALARM';
 
 let success_count = 0;
 let error_count = 0;
 let warning_count = 0;
 let info_count = 0;
+let alarm_count = 0;
 
 let flowmeter_insertion_count = 0;
 let well_stock_insertion_count = 0;
@@ -51,6 +53,9 @@ const logger = {
     } else if (level === warning) {
       style = chalk.yellow;
       warning_count++;
+    } else if (level === alarm) {
+      style = chalk.blue;
+      alarm_count++;
     } else if (level === 'INFO' && logger_without_timestamp === false) {
       info_count++;
     }
