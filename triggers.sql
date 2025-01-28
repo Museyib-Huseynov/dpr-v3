@@ -27,7 +27,8 @@ BEGIN
     
     UPDATE daily_well_parameters
     SET water_cut = NEW.water_cut,
-		mechanical_impurities = NEW.mechanical_impurities
+		mechanical_impurities = NEW.mechanical_impurities,
+		oil_loss_ton = (oil_loss_ton * (oil_density * (1 - reported_water_cut / 100) + reported_water_cut / 100) / (1 - reported_water_cut / 100)) / (oil_density * (1 - NEW.water_cut / 100) + NEW.water_cut / 100) * (1 - NEW.water_cut / 100)
 		WHERE well_id = NEW.well_id 
 		AND report_date >= NEW.last_lab_date
 		AND (
@@ -73,7 +74,8 @@ BEGIN
 
 	UPDATE daily_well_parameters
     SET water_cut = last_available_water_cut,
-		mechanical_impurities = last_available_mechanical_impurities
+		mechanical_impurities = last_available_mechanical_impurities,
+		oil_loss_ton = (oil_loss_ton * (oil_density * (1 - reported_water_cut / 100) + reported_water_cut / 100) / (1 - reported_water_cut / 100)) / (oil_density * (1 - OLD.water_cut / 100) + OLD.water_cut / 100) * (1 - OLD.water_cut / 100)
 		WHERE well_id = OLD.well_id 
 		AND report_date >= OLD.last_lab_date
 		AND (

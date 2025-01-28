@@ -889,17 +889,19 @@ try {
               p9x13_day,
               p13x20_day,
               (liquid_ton / 24) * well_uptime_hours,
-              total_gas,
+              (total_gas / 24) * well_uptime_hours,
               gaslift_gas_day,
               water_cut,
               water_cut,
               mechanical_impurities,
               oil_density,
-              ((liquid_ton / 24) *
-                (24 - well_uptime_hours) *
-                (1 - water_cut / 100) *
-                oil_density) /
-                (oil_density * (1 - water_cut / 100) + water_cut / 100),
+              oil_density > 0
+                ? ((liquid_ton / 24) *
+                    (24 - well_uptime_hours) *
+                    (1 - water_cut / 100) *
+                    oil_density) /
+                  (oil_density * (1 - water_cut / 100) + water_cut / 100)
+                : 0,
             ];
 
             if (!Number(daily_well_parameters_entry_exists)) {

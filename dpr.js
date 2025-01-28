@@ -20,13 +20,11 @@ let logger_without_timestamp = false;
 const success = 'SUCCESS';
 const error = 'ERROR';
 const warning = 'WARNING';
-const alarm = 'ALARM';
 
 let success_count = 0;
 let error_count = 0;
 let warning_count = 0;
 let info_count = 0;
-let alarm_count = 0;
 
 let flowmeter_insertion_count = 0;
 let well_stock_insertion_count = 0;
@@ -53,9 +51,6 @@ const logger = {
     } else if (level === warning) {
       style = chalk.yellow;
       warning_count++;
-    } else if (level === alarm) {
-      style = chalk.blue;
-      alarm_count++;
     } else if (level === 'INFO' && logger_without_timestamp === false) {
       info_count++;
     }
@@ -858,17 +853,19 @@ try {
           p9x13_day,
           p13x20_day,
           (liquid_ton / 24) * well_uptime_hours,
-          total_gas,
+          (total_gas / 24) * well_uptime_hours,
           gaslift_gas_day,
           water_cut,
           water_cut,
           mechanical_impurities,
           oil_density,
-          ((liquid_ton / 24) *
-            (24 - well_uptime_hours) *
-            (1 - water_cut / 100) *
-            oil_density) /
-            (oil_density * (1 - water_cut / 100) + water_cut / 100),
+          oil_density > 0
+            ? ((liquid_ton / 24) *
+                (24 - well_uptime_hours) *
+                (1 - water_cut / 100) *
+                oil_density) /
+              (oil_density * (1 - water_cut / 100) + water_cut / 100)
+            : 0,
         ];
 
         if (!Number(daily_well_parameters_entry_exists)) {
