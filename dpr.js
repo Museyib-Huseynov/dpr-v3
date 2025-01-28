@@ -496,7 +496,10 @@ try {
         //
 
         // check total_gas is bigger than gaslift_gas
-        if (total_gas < gaslift_gas_wt) {
+        if (
+          total_gas < gaslift_gas_wt ||
+          (total_gas / 24) * well_uptime_hours < gaslift_gas_day
+        ) {
           logger.log(
             `Check 'total gas can not be less than gaslift gas'`,
             error
