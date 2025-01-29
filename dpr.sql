@@ -434,7 +434,7 @@ DROP TABLE IF EXISTS `platforms`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `platforms` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
+  `name` int DEFAULT NULL,
   `field_id` int NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_platform` (`name`,`field_id`),
@@ -449,7 +449,7 @@ CREATE TABLE `platforms` (
 
 LOCK TABLES `platforms` WRITE;
 /*!40000 ALTER TABLE `platforms` DISABLE KEYS */;
-INSERT INTO `platforms` VALUES (9,'10',1),(10,'11',1),(11,'13',1),(12,'14',1),(13,'15',1),(14,'19',1),(1,'2',1),(2,'3',1),(3,'4',1),(4,'5',1),(5,'6',1),(6,'7',1),(7,'8',1),(8,'9',1);
+INSERT INTO `platforms` VALUES (1,2,1),(2,3,1),(3,4,1),(4,5,1),(5,6,1),(6,7,1),(7,8,1),(8,9,1),(9,10,1),(10,11,1),(11,13,1),(12,14,1),(13,15,1),(14,19,1);
 /*!40000 ALTER TABLE `platforms` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -848,7 +848,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `DeleteEntries`(IN reportDate DATE, IN platform VARCHAR(255) )
+CREATE DEFINER=`root`@`localhost` PROCEDURE `DeleteEntries`(IN reportDate DATE, IN platform INT )
 BEGIN
     DECLARE reportDateId INT;
 
@@ -959,4 +959,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-01-29 11:19:46
+-- Dump completed on 2025-01-29 11:50:39

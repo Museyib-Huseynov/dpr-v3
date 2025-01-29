@@ -131,7 +131,7 @@ try {
           // parse platform_id
           const platform_number = rows[18][4];
           const platform_id = platforms.find(
-            (i) => i.name.trim() === String(platform_number).trim()
+            (i) => i.name === Number(platform_number)
           )?.id;
           if (!platform_id) {
             logger.log(`Platform number is not correct in excel file`, error);

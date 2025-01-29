@@ -22,7 +22,7 @@ BEGIN
     TRUNCATE TABLE laboratory_results;
 END //
 
-CREATE PROCEDURE DeleteEntries(IN reportDate DATE, IN platform VARCHAR(255) )
+CREATE PROCEDURE DeleteEntries(IN reportDate DATE, IN platform INT )
 BEGIN
     DECLARE reportDateId INT;
 
