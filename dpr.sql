@@ -88,7 +88,7 @@ CREATE TABLE `completions` (
   CONSTRAINT `completions_ibfk_1` FOREIGN KEY (`well_id`) REFERENCES `wells` (`id`),
   CONSTRAINT `completions_ibfk_2` FOREIGN KEY (`report_date_id`) REFERENCES `report_dates` (`id`),
   CONSTRAINT `completions_ibfk_3` FOREIGN KEY (`horizon_id`) REFERENCES `horizons` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -97,6 +97,7 @@ CREATE TABLE `completions` (
 
 LOCK TABLES `completions` WRITE;
 /*!40000 ALTER TABLE `completions` DISABLE KEYS */;
+INSERT INTO `completions` VALUES (1,1,372,12,'139,7 x 168,3\n1638 x 1642\n(3280)','3039-2994','73x114','2,5″(1389m)x\n4″(1586m)xr/s(12m)=2987m','48x73','1,5″(1203m)x\n2,5″(1547,5m)=2750,5m',NULL,NULL,NULL,'2025-01-29 20:31:17'),(2,2,372,12,'139,7 x 168,3\n1449 x 1801\n(3250)','3021-2986','73x114','2,5″(1281m)x4″(1685m)xr/s (12m)=2978m','48x73','1,5″(1193m)x\n2,5″(1607m)=2800m',NULL,NULL,NULL,'2025-01-29 20:31:17'),(3,3,372,11,'139,7 x 168,3\n1424 x 1816\n(3240)','2957-2889','73x114','2,5″(1196m)x\n4″(1664m)xr/s(13m)=2873m','48x73','1,5″(1100,5m)x\n2,5″(1568,5m)=2669m',NULL,NULL,NULL,'2025-01-29 20:31:17'),(4,4,372,12,'139,7 x 168,3\n1625 x 1660\n(3285)','3104-3067','73x114','2,5″(1546m)x\n4″(1496m)xr/s(12m)=3054m','48x73','1,5″(651m)x\n2,5″(1350m)=2001m',NULL,NULL,NULL,'2025-01-29 20:31:17'),(5,5,372,11,'139,7 x 168,3\n1553 x 1703\n(3256)','2955-2921','73x114','2,5″(1259m)x\n4″(1635m)xr/s(13m)=2907m','48x73','1,5″(1002m)x\n2,5″(1498m)=2500m',NULL,NULL,NULL,'2025-01-29 20:31:17'),(6,6,372,12,'139,7 x 168,3\n1497 x 1732\n(3229)','2998-2994','73x114','2,5″(1411,73m)x\n4″(1561,82m)xr/s(12m)=2985,55m','48x73','1,5″(500m)x\n2,5″(1504m)=2004m',NULL,NULL,NULL,'2025-01-29 20:31:17'),(7,7,372,11,'139,7 x 168,3\n1454 x 1754\n(3208)','2917-2872','73x114','2,5″(1161m)x\n4″(1689m)xr/s(13m)=2863m','48x73','1,5″(949m)x\n2,5″(1652m)=2601m',NULL,NULL,NULL,'2025-01-29 20:31:17'),(8,8,372,11,'139,7 x 168,3\n1671 x 1693\n(3364)','3081-3048','73x114','t.b 2,5″(1445m)x\n4″(1586m)xr/s(12m)=3043m','48x73','1,5″(1303m)x\n2,5″(1541m)=2844m',NULL,NULL,NULL,'2025-01-29 20:31:17');
 /*!40000 ALTER TABLE `completions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -165,7 +166,7 @@ CREATE TABLE `daily_well_parameters` (
   KEY `report_date_id` (`report_date_id`),
   CONSTRAINT `daily_well_parameters_ibfk_1` FOREIGN KEY (`well_id`) REFERENCES `wells` (`id`),
   CONSTRAINT `daily_well_parameters_ibfk_2` FOREIGN KEY (`report_date_id`) REFERENCES `report_dates` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -174,6 +175,7 @@ CREATE TABLE `daily_well_parameters` (
 
 LOCK TABLES `daily_well_parameters` WRITE;
 /*!40000 ALTER TABLE `daily_well_parameters` DISABLE KEYS */;
+INSERT INTO `daily_well_parameters` VALUES (1,1,372,2,12,'14','18/22','74','80','0','0','0',29,19000,1000,1,1,0.1,0.861,28.6637,'2025-01-29 20:31:17'),(2,2,372,2,24,'18','11/19','54','81','0','0','0',32,35600,28000,64,64,0.1,0.861,0,'2025-01-29 20:31:17'),(3,3,372,2,24,'12','14/17','41/42','37','0','10','0',9,29100,15000,0,0,0,0.873,0,'2025-01-29 20:31:17'),(4,4,372,2,24,'11','17/37','70/72','93/94','14','0','0',77,36000,20000,35,35,0.1,0.861,0,'2025-01-29 20:31:17'),(5,5,372,2,24,'10','13/14','24/25','29','0','0','0',3,19900,9000,0,0,0,0.873,0,'2025-01-29 20:31:17'),(6,6,372,2,24,'15','12/24','50/51','65','0','0','0',60,36300,23000,30,30,0,0.861,0,'2025-01-29 20:31:17'),(7,7,372,2,24,'13','12/13','33/34','34/35','0','0','0',6,29100,15000,10,10,0.1,0.873,0,'2025-01-29 20:31:17'),(8,8,372,2,24,'13','15/18','48/50','44/45','2','0','0',11,29800,19000,13,13,0,0.873,0,'2025-01-29 20:31:17'),(9,9,372,NULL,0,'0','0','0','0','0','0','0',0,0,0,0,0,0,0,0,'2025-01-29 20:31:17'),(10,10,372,NULL,0,'0','0','0','0','0','0','0',0,0,0,0,0,0,0,0,'2025-01-29 20:31:17'),(11,11,372,NULL,0,'0','0','0','0','0','0','0',0,0,0,0,0,0,0,0,'2025-01-29 20:31:17'),(12,12,372,NULL,0,'0','0','0','0','0','0','0',0,0,0,0,0,0,0,0,'2025-01-29 20:31:17'),(13,13,372,NULL,0,'0','0','0','0','0','0','0',0,0,0,0,0,0,0,0,'2025-01-29 20:31:17'),(14,1,373,2,12,'14','18/22','74','80','0','0','0',29,19000,1000,50,50,0.1,0.861,13.417,'2025-01-29 20:32:20'),(15,2,373,2,24,'18','11/19','54','81','0','0','0',32,35600,28000,64,64,0.1,0.861,0,'2025-01-29 20:32:20'),(16,3,373,2,24,'12','14/17','41/42','37','0','10','0',9,29100,15000,0,0,0,0.873,0,'2025-01-29 20:32:20'),(17,4,373,2,24,'11','17/37','70/72','93/94','14','0','0',77,36000,20000,35,35,0.1,0.861,0,'2025-01-29 20:32:20'),(18,5,373,2,24,'10','13/14','24/25','29','0','0','0',3,19900,9000,0,0,0,0.873,0,'2025-01-29 20:32:20'),(19,6,373,2,24,'15','12/24','50/51','65','0','0','0',60,36300,23000,30,30,0,0.861,0,'2025-01-29 20:32:20'),(20,7,373,2,24,'13','12/13','33/34','34/35','0','0','0',6,29100,15000,10,10,0.1,0.873,0,'2025-01-29 20:32:20'),(21,8,373,2,24,'13','15/18','48/50','44/45','2','0','0',11,29800,19000,13,13,0,0.873,0,'2025-01-29 20:32:20'),(22,9,373,NULL,0,'0','0','0','0','0','0','0',0,0,0,0,0,0,0,0,'2025-01-29 20:32:20'),(23,10,373,NULL,0,'0','0','0','0','0','0','0',0,0,0,0,0,0,0,0,'2025-01-29 20:32:20'),(24,11,373,NULL,0,'0','0','0','0','0','0','0',0,0,0,0,0,0,0,0,'2025-01-29 20:32:20'),(25,12,373,NULL,0,'0','0','0','0','0','0','0',0,0,0,0,0,0,0,0,'2025-01-29 20:32:20'),(26,13,373,NULL,0,'0','0','0','0','0','0','0',0,0,0,0,0,0,0,0,'2025-01-29 20:32:20');
 /*!40000 ALTER TABLE `daily_well_parameters` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -227,7 +229,7 @@ CREATE TABLE `flowmeters` (
   KEY `report_date_id` (`report_date_id`),
   CONSTRAINT `flowmeters_ibfk_1` FOREIGN KEY (`platform_id`) REFERENCES `platforms` (`id`),
   CONSTRAINT `flowmeters_ibfk_2` FOREIGN KEY (`report_date_id`) REFERENCES `report_dates` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -236,6 +238,7 @@ CREATE TABLE `flowmeters` (
 
 LOCK TABLES `flowmeters` WRITE;
 /*!40000 ALTER TABLE `flowmeters` DISABLE KEYS */;
+INSERT INTO `flowmeters` VALUES (1,1,372,NULL,1195,NULL,1594,'2020-01-01','2025-01-29 20:31:17'),(2,1,373,NULL,1195,NULL,1594,'2020-01-01','2025-01-29 20:32:20');
 /*!40000 ALTER TABLE `flowmeters` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -284,7 +287,7 @@ CREATE TABLE `laboratory_results` (
   KEY `fk_lr_report_date_id` (`report_date_id`),
   CONSTRAINT `fk_lr_report_date_id` FOREIGN KEY (`report_date_id`) REFERENCES `report_dates` (`id`),
   CONSTRAINT `laboratory_results_ibfk_1` FOREIGN KEY (`well_id`) REFERENCES `wells` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -293,6 +296,7 @@ CREATE TABLE `laboratory_results` (
 
 LOCK TABLES `laboratory_results` WRITE;
 /*!40000 ALTER TABLE `laboratory_results` DISABLE KEYS */;
+INSERT INTO `laboratory_results` VALUES (1,1,372,'2025-01-06',1,0.1,'2025-01-29 16:31:17'),(2,2,372,'2024-12-28',64,0.1,'2025-01-29 16:31:17'),(3,3,372,'2024-12-28',0,0,'2025-01-29 16:31:17'),(4,4,372,'2024-12-28',35,0.1,'2025-01-29 16:31:17'),(5,5,372,'2024-12-28',0,0,'2025-01-29 16:31:17'),(6,6,372,'2024-12-28',30,0,'2025-01-29 16:31:17'),(7,7,372,'2024-12-28',10,0.1,'2025-01-29 16:31:17'),(8,8,372,'2024-12-28',13,0,'2025-01-29 16:31:17'),(9,9,372,'1899-12-31',0,0,'2025-01-29 16:31:17'),(10,10,372,'1899-12-31',0,0,'2025-01-29 16:31:17'),(11,11,372,'1899-12-31',0,0,'2025-01-29 16:31:17'),(12,12,372,'1899-12-31',0,0,'2025-01-29 16:31:17'),(13,13,372,'1899-12-31',0,0,'2025-01-29 16:31:17'),(14,1,373,'2025-01-07',50,0.1,'2025-01-29 16:32:20');
 /*!40000 ALTER TABLE `laboratory_results` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -305,12 +309,6 @@ UNLOCK TABLES;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `after_laboratory_results_insert` AFTER INSERT ON `laboratory_results` FOR EACH ROW BEGIN
-		DECLARE report_date DATE;
-
-		SELECT rd.report_date INTO report_date
-		FROM report_dates AS rd
-		WHERE rd.id = NEW.report_date_id;
-
     UPDATE well_tests 
     SET water_cut = NEW.water_cut, 
 		mechanical_impurities = NEW.mechanical_impurities 
@@ -330,12 +328,12 @@ DELIMITER ;;
 		water_cut = NEW.water_cut,
 		mechanical_impurities = NEW.mechanical_impurities
 		WHERE well_id = NEW.well_id 
-		AND report_date >= NEW.last_lab_date
+		AND (SELECT rd.report_date FROM report_dates AS rd WHERE rd.id = report_date_id) >= NEW.last_lab_date
 		AND (
 			NOT EXISTS (
 				SELECT 1 FROM laboratory_results as lr1 WHERE lr1.last_lab_date > NEW.last_lab_date
 			)
-			OR report_date < (SELECT MIN(lr2.last_lab_date) FROM laboratory_results as lr2 WHERE lr2.last_lab_date >  NEW.last_lab_date )
+			OR (SELECT rd.report_date FROM report_dates AS rd WHERE rd.id = report_date_id) < (SELECT MIN(lr2.last_lab_date) FROM laboratory_results as lr2 WHERE lr2.last_lab_date >  NEW.last_lab_date )
 		);
 END */;;
 DELIMITER ;
@@ -355,11 +353,6 @@ DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `after_laboratory_results_delete` AFTER DELETE ON `laboratory_results` FOR EACH ROW BEGIN
 	DECLARE last_available_water_cut FLOAT;
   DECLARE last_available_mechanical_impurities FLOAT;
-	DECLARE report_date DATE;
-
-	SELECT rd.report_date INTO report_date
-	FROM report_dates AS rd
-	WHERE rd.id = OLD.report_date_id;
     
   SELECT water_cut, mechanical_impurities
 	INTO last_available_water_cut, last_available_mechanical_impurities
@@ -386,12 +379,12 @@ DELIMITER ;;
 		water_cut = last_available_water_cut,
 		mechanical_impurities = last_available_mechanical_impurities
 		WHERE well_id = OLD.well_id 
-		AND report_date >= OLD.last_lab_date
+		AND (SELECT rd.report_date FROM report_dates AS rd WHERE rd.id = report_date_id) >= OLD.last_lab_date
 		AND (
 			NOT EXISTS (
 				SELECT 1 FROM laboratory_results as lr1 WHERE lr1.last_lab_date > OLD.last_lab_date
 			)
-			OR report_date < (SELECT MIN(lr2.last_lab_date) FROM laboratory_results as lr2 WHERE lr2.last_lab_date >  OLD.last_lab_date )
+			OR (SELECT rd.report_date FROM report_dates AS rd WHERE rd.id = report_date_id) < (SELECT MIN(lr2.last_lab_date) FROM laboratory_results as lr2 WHERE lr2.last_lab_date >  OLD.last_lab_date )
 		);
 END */;;
 DELIMITER ;
@@ -631,7 +624,7 @@ CREATE TABLE `well_downtime_reasons` (
   CONSTRAINT `well_downtime_reasons_ibfk_1` FOREIGN KEY (`well_id`) REFERENCES `wells` (`id`),
   CONSTRAINT `well_downtime_reasons_ibfk_2` FOREIGN KEY (`report_date_id`) REFERENCES `report_dates` (`id`),
   CONSTRAINT `well_downtime_reasons_ibfk_3` FOREIGN KEY (`production_sub_skins_activity_id`) REFERENCES `production_sub_skins_activities` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -640,6 +633,7 @@ CREATE TABLE `well_downtime_reasons` (
 
 LOCK TABLES `well_downtime_reasons` WRITE;
 /*!40000 ALTER TABLE `well_downtime_reasons` DISABLE KEYS */;
+INSERT INTO `well_downtime_reasons` VALUES (1,1,372,'Planlaşdırılmış',4,'sdfssdfsdf','2025-01-29 20:31:17'),(2,9,372,'Planlaşdırılmış',1,'Ləğv olunmuş','2025-01-29 20:31:17'),(3,10,372,'Planlaşdırılmış',1,'Ləğv gözləyən','2025-01-29 20:31:17'),(4,11,372,'Planlaşdırılmış',1,'Ləğv olunmuş','2025-01-29 20:31:17'),(5,12,372,'Planlaşdırılmış',1,'Ləğv olunmuş','2025-01-29 20:31:17'),(6,13,372,'Planlaşdırılmış',1,'Fəaliyyətsiz','2025-01-29 20:31:17');
 /*!40000 ALTER TABLE `well_downtime_reasons` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -672,7 +666,7 @@ CREATE TABLE `well_stock` (
   CONSTRAINT `well_stock_ibfk_4` FOREIGN KEY (`well_stock_sub_category_id`) REFERENCES `well_stock_sub_categories` (`id`),
   CONSTRAINT `well_stock_ibfk_5` FOREIGN KEY (`production_well_stock_sub_category_id`) REFERENCES `production_well_stock_sub_categories` (`id`),
   CONSTRAINT `well_stock_ibfk_6` FOREIGN KEY (`production_method_id`) REFERENCES `production_methods` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -681,6 +675,7 @@ CREATE TABLE `well_stock` (
 
 LOCK TABLES `well_stock` WRITE;
 /*!40000 ALTER TABLE `well_stock` DISABLE KEYS */;
+INSERT INTO `well_stock` VALUES (1,1,372,1,1,1,3,'2025-01-29 20:31:17'),(2,2,372,1,1,1,3,'2025-01-29 20:31:17'),(3,3,372,1,1,1,3,'2025-01-29 20:31:17'),(4,4,372,1,1,1,2,'2025-01-29 20:31:17'),(5,5,372,1,1,1,2,'2025-01-29 20:31:17'),(6,6,372,1,1,1,2,'2025-01-29 20:31:17'),(7,7,372,1,1,1,2,'2025-01-29 20:31:17'),(8,8,372,1,1,1,3,'2025-01-29 20:31:17'),(9,9,372,1,2,NULL,NULL,'2025-01-29 20:31:17'),(10,10,372,1,3,NULL,NULL,'2025-01-29 20:31:17'),(11,11,372,1,2,NULL,NULL,'2025-01-29 20:31:17'),(12,12,372,1,2,NULL,NULL,'2025-01-29 20:31:17'),(13,13,372,3,1,3,NULL,'2025-01-29 20:31:17');
 /*!40000 ALTER TABLE `well_stock` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -766,7 +761,7 @@ CREATE TABLE `well_tests` (
   KEY `fk_report_date_id` (`report_date_id`),
   CONSTRAINT `fk_report_date_id` FOREIGN KEY (`report_date_id`) REFERENCES `report_dates` (`id`),
   CONSTRAINT `well_tests_ibfk_1` FOREIGN KEY (`well_id`) REFERENCES `wells` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -775,6 +770,7 @@ CREATE TABLE `well_tests` (
 
 LOCK TABLES `well_tests` WRITE;
 /*!40000 ALTER TABLE `well_tests` DISABLE KEYS */;
+INSERT INTO `well_tests` VALUES (1,1,372,'2025-01-06','14,0','18/22','75','80','0','0','0',58,38000,24000,1,1,0.1,0.861,'2025-01-29 16:31:17'),(2,2,372,'2024-12-28','18,0','11/19','55','81','0','0','0',32,35600,28000,64,64,0.1,0.861,'2025-01-29 16:31:17'),(3,3,372,'2024-12-28','12,0','14/17','42/43','38','0','10','0',9,29100,15000,0,0,0,0.873,'2025-01-29 16:31:17'),(4,4,372,'2024-12-28','11,0','17/38','70/72','93/94','15','0','0',77,36000,20000,35,35,0.1,0.861,'2025-01-29 16:31:17'),(5,5,372,'2024-12-28','10,0','13/14','24/25','29','0','0','0',3,19900,9000,0,0,0,0.873,'2025-01-29 16:31:17'),(6,6,372,'2024-12-28','15,0','12/24','50/51','64/65','0','0','0',60,36300,23000,30,30,0,0.861,'2025-01-29 16:31:17'),(7,7,372,'2024-12-28','13,0','12/13','33/34','35/36','0','0','0',6,29100,15000,10,10,0.1,0.873,'2025-01-29 16:31:17'),(8,8,372,'2024-12-28','13,0','15/18','48/50','44/45','0','0','0',11,29800,19000,13,13,0,0.873,'2025-01-29 16:31:17'),(9,9,372,'1899-12-31','0','0','0','0','0','0','0',0,0,0,0,0,0,0,'2025-01-29 16:31:17'),(10,10,372,'1899-12-31','0','0','0','0','0','0','0',0,0,0,0,0,0,0,'2025-01-29 16:31:17'),(11,11,372,'1899-12-31','0','0','0','0','0','0','0',0,0,0,0,0,0,0,'2025-01-29 16:31:17'),(12,12,372,'1899-12-31','0','0','0','0','0','0','0',0,0,0,0,0,0,0,'2025-01-29 16:31:17'),(13,13,372,'1899-12-31','0','0','0','0','0','0','0',0,0,0,0,0,0,0,'2025-01-29 16:31:17'),(14,1,373,'2025-01-07','14,0','18/22','75','80','0','0','0',58,38000,24000,50,50,0.1,0.861,'2025-01-29 16:32:20');
 /*!40000 ALTER TABLE `well_tests` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -959,4 +955,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-01-29 11:50:39
+-- Dump completed on 2025-01-29 20:33:29
