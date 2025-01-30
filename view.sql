@@ -18,15 +18,21 @@ SELECT
     dwp.p9x13 AS P9x13,
     dwp.p13x20 AS P13x20,
     ROUND(dwp.liquid_ton, 0) AS liquid_ton,
-    ROUND(dwp.liquid_ton * (dwp.water_cut / 100) / (dwp.oil_density * (1 - (dwp.water_cut / 100)) + (dwp.water_cut / 100)), 0) AS water_ton,
-    ROUND(dwp.liquid_ton * dwp.oil_density * (1 - (dwp.water_cut / 100)) / (dwp.oil_density * (1 - (dwp.water_cut / 100)) + (dwp.water_cut / 100)), 0) AS oil_ton,
+    CASE
+        WHEN dwp.oil_density = 0 AND dwp.water_cut = 0 THEN 0
+        ELSE ROUND(dwp.liquid_ton * (dwp.water_cut / 100) / (dwp.oil_density * (1 - (dwp.water_cut / 100)) + (dwp.water_cut / 100)), 0)
+    END AS water_ton,
+    CASE
+        WHEN dwp.oil_density = 0 AND dwp.water_cut = 0 THEN 0
+        ELSE ROUND(dwp.liquid_ton * dwp.oil_density * (1 - (dwp.water_cut / 100)) / (dwp.oil_density * (1 - (dwp.water_cut / 100)) + (dwp.water_cut / 100)), 0)
+    END AS oil_ton,
     ROUND(dwp.total_gas, 0) AS total_gas,
     dwp.gaslift_gas AS gaslift_gas,
-    (wt.total_gas - wt.gaslift_gas) * dwp.well_uptime_hours / 24 AS produced_gas,
+    ROUND((wt.total_gas - wt.gaslift_gas) * dwp.well_uptime_hours / 24, 0) AS produced_gas,
     dwp.reported_water_cut AS reported_water_cut,
     dwp.water_cut AS allocated_water_cut,
     dwp.mechanical_impurities AS mechanical_impurities,
-    dwp.oil_density AS oil_density,
+    ROUND(dwp.oil_density, 3) AS oil_density,
     ROUND(dwp.oil_loss_ton, 0) AS oil_loss_ton,
     wdr.downtime_category AS donwtime_category,
     pssa.name AS production_skin,

@@ -12,9 +12,9 @@ BEGIN
 		AND well_test_date >= NEW.last_lab_date 
 		AND (
 			NOT EXISTS (
-				SELECT 1 FROM laboratory_results as lr1 where lr1.last_lab_date > NEW.last_lab_date
+				SELECT 1 FROM laboratory_results as lr1 where lr1.last_lab_date > NEW.last_lab_date AND lr1.well_id = NEW.well_id
 			)
-			OR well_test_date < (SELECT MIN(lr2.last_lab_date) FROM laboratory_results as lr2 WHERE lr2.last_lab_date >  NEW.last_lab_date )
+			OR well_test_date < (SELECT MIN(lr2.last_lab_date) FROM laboratory_results as lr2 WHERE lr2.last_lab_date > NEW.last_lab_date AND lr2.well_id = NEW.well_id )
 		); 
     -- ORDER BY well_test_date 
     -- LIMIT 1;
@@ -31,9 +31,9 @@ BEGIN
 		AND (SELECT rd.report_date FROM report_dates AS rd WHERE rd.id = report_date_id) >= NEW.last_lab_date
 		AND (
 			NOT EXISTS (
-				SELECT 1 FROM laboratory_results as lr1 WHERE lr1.last_lab_date > NEW.last_lab_date
+				SELECT 1 FROM laboratory_results as lr1 WHERE lr1.last_lab_date > NEW.last_lab_date AND lr1.well_id = NEW.well_id
 			)
-			OR (SELECT rd.report_date FROM report_dates AS rd WHERE rd.id = report_date_id) < (SELECT MIN(lr2.last_lab_date) FROM laboratory_results as lr2 WHERE lr2.last_lab_date >  NEW.last_lab_date )
+			OR (SELECT rd.report_date FROM report_dates AS rd WHERE rd.id = report_date_id) < (SELECT MIN(lr2.last_lab_date) FROM laboratory_results as lr2 WHERE lr2.last_lab_date > NEW.last_lab_date AND lr2.well_id = NEW.well_id)
 		);
 END //
 
@@ -60,9 +60,9 @@ BEGIN
 	AND well_test_date >= OLD.last_lab_date 
 	AND (
 		NOT EXISTS (
-			SELECT 1 FROM laboratory_results as lr1 where lr1.last_lab_date > OLD.last_lab_date
+			SELECT 1 FROM laboratory_results as lr1 where lr1.last_lab_date > OLD.last_lab_date AND lr1.well_id = OLD.well_id
 		)
-		OR well_test_date < (SELECT MIN(lr2.last_lab_date) FROM laboratory_results as lr2 WHERE lr2.last_lab_date >  OLD.last_lab_date )
+		OR well_test_date < (SELECT MIN(lr2.last_lab_date) FROM laboratory_results as lr2 WHERE lr2.last_lab_date >  OLD.last_lab_date AND lr2.well_id = OLD.well_id)
 	); 
 
 	UPDATE daily_well_parameters
@@ -77,9 +77,9 @@ BEGIN
 		AND (SELECT rd.report_date FROM report_dates AS rd WHERE rd.id = report_date_id) >= OLD.last_lab_date
 		AND (
 			NOT EXISTS (
-				SELECT 1 FROM laboratory_results as lr1 WHERE lr1.last_lab_date > OLD.last_lab_date
+				SELECT 1 FROM laboratory_results as lr1 WHERE lr1.last_lab_date > OLD.last_lab_date AND lr1.well_id = OLD.well_id
 			)
-			OR (SELECT rd.report_date FROM report_dates AS rd WHERE rd.id = report_date_id) < (SELECT MIN(lr2.last_lab_date) FROM laboratory_results as lr2 WHERE lr2.last_lab_date >  OLD.last_lab_date )
+			OR (SELECT rd.report_date FROM report_dates AS rd WHERE rd.id = report_date_id) < (SELECT MIN(lr2.last_lab_date) FROM laboratory_results as lr2 WHERE lr2.last_lab_date >  OLD.last_lab_date AND lr2.well_id = OLD.well_id)
 		);
 END //
 
