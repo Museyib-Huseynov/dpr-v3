@@ -497,8 +497,8 @@ try {
 
         // check total_gas is bigger than gaslift_gas
         if (
-          total_gas < gaslift_gas_wt ||
-          (total_gas / 24) * well_uptime_hours < gaslift_gas_day
+          total_gas < gaslift_gas_wt
+          // || (total_gas / 24) * well_uptime_hours < gaslift_gas_day
         ) {
           logger.log(
             `Check 'total gas can not be less than gaslift gas'`,
@@ -857,7 +857,7 @@ try {
           p13x20_day,
           (liquid_ton / 24) * well_uptime_hours,
           (total_gas / 24) * well_uptime_hours,
-          gaslift_gas_day,
+          (gaslift_gas_day / 24) * well_uptime_hours,
           water_cut,
           water_cut,
           mechanical_impurities,

@@ -22,7 +22,7 @@ SELECT
     ROUND(dwp.liquid_ton * dwp.oil_density * (1 - (dwp.water_cut / 100)) / (dwp.oil_density * (1 - (dwp.water_cut / 100)) + (dwp.water_cut / 100)), 0) AS oil_ton,
     ROUND(dwp.total_gas, 0) AS total_gas,
     dwp.gaslift_gas AS gaslift_gas,
-    dwp.total_gas - dwp.gaslift_gas AS produced_gas,
+    (wt.total_gas - wt.gaslift_gas) * dwp.well_uptime_hours / 24 AS produced_gas,
     dwp.reported_water_cut AS reported_water_cut,
     dwp.water_cut AS allocated_water_cut,
     dwp.mechanical_impurities AS mechanical_impurities,
@@ -55,6 +55,14 @@ AND wdr.report_date_id = (
     FROM well_downtime_reasons AS wdr_sub
     WHERE wdr_sub.well_id = dwp.well_id
     AND wdr_sub.report_date_id <= dwp.report_date_id
+)
+LEFT JOIN well_tests AS wt
+ON dwp.well_id = wt.well_id
+AND wt.report_date_id = (
+	SELECT MAX(wt_sub.report_date_id)
+    FROM well_tests AS wt_sub
+    WHERE wt_sub.well_id = dwp.well_id
+    AND wt_sub.report_date_id <= dwp.report_date_id
 )
 LEFT JOIN wells AS w
 ON dwp.well_id = w.id
