@@ -18,9 +18,13 @@ BEGIN
 		); 
     -- ORDER BY well_test_date 
     -- LIMIT 1;
-    
+     
     UPDATE daily_well_parameters
-    SET oil_loss_ton = (oil_loss_ton * (oil_density * (1 - water_cut / 100) + water_cut / 100) / (1 - water_cut / 100)) / (oil_density * (1 - NEW.water_cut / 100) + NEW.water_cut / 100) * (1 - NEW.water_cut / 100),
+    SET oil_loss_ton = 
+		CASE 
+			WHEN water_cut = 100 OR (NEW.water_cut = 0 AND oil_density = 0) THEN 0
+			ELSE (oil_loss_ton * (oil_density * (1 - water_cut / 100) + water_cut / 100) / (1 - water_cut / 100)) * (1 - NEW.water_cut / 100) / (oil_density * (1 - NEW.water_cut / 100) + NEW.water_cut / 100) 
+		END,
 		water_cut = NEW.water_cut,
 		mechanical_impurities = NEW.mechanical_impurities
 		WHERE well_id = NEW.well_id 
@@ -62,7 +66,11 @@ BEGIN
 	); 
 
 	UPDATE daily_well_parameters
-    SET oil_loss_ton = (oil_loss_ton * (oil_density * (1 - water_cut / 100) + water_cut / 100) / (1 - water_cut / 100)) / (oil_density * (1 - OLD.water_cut / 100) + OLD.water_cut / 100) * (1 - OLD.water_cut / 100), 
+    SET oil_loss_ton = 
+		CASE 
+			WHEN water_cut = 100 OR (OLD.water_cut = 0 AND oil_density = 0) THEN 0
+			ELSE (oil_loss_ton * (oil_density * (1 - water_cut / 100) + water_cut / 100) / (1 - water_cut / 100)) * (1 - OLD.water_cut / 100) / (oil_density * (1 - OLD.water_cut / 100) + OLD.water_cut / 100) 
+		END, 
 		water_cut = last_available_water_cut,
 		mechanical_impurities = last_available_mechanical_impurities
 		WHERE well_id = OLD.well_id 

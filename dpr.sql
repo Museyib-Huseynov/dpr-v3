@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `dpr` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `dpr`;
--- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.40, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: dpr
+-- Host: localhost    Database: dpr
 -- ------------------------------------------------------
--- Server version	8.0.34
+-- Server version	8.0.40
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -322,9 +322,13 @@ DELIMITER ;;
 		); 
     -- ORDER BY well_test_date 
     -- LIMIT 1;
-    
+     
     UPDATE daily_well_parameters
-    SET oil_loss_ton = (oil_loss_ton * (oil_density * (1 - water_cut / 100) + water_cut / 100) / (1 - water_cut / 100)) / (oil_density * (1 - NEW.water_cut / 100) + NEW.water_cut / 100) * (1 - NEW.water_cut / 100),
+    SET oil_loss_ton = 
+		CASE 
+			WHEN water_cut = 100 OR (NEW.water_cut = 0 AND oil_density = 0) THEN 0
+			ELSE (oil_loss_ton * (oil_density * (1 - water_cut / 100) + water_cut / 100) / (1 - water_cut / 100)) * (1 - NEW.water_cut / 100) / (oil_density * (1 - NEW.water_cut / 100) + NEW.water_cut / 100) 
+		END,
 		water_cut = NEW.water_cut,
 		mechanical_impurities = NEW.mechanical_impurities
 		WHERE well_id = NEW.well_id 
@@ -375,7 +379,11 @@ DELIMITER ;;
 	); 
 
 	UPDATE daily_well_parameters
-    SET oil_loss_ton = (oil_loss_ton * (oil_density * (1 - water_cut / 100) + water_cut / 100) / (1 - water_cut / 100)) / (oil_density * (1 - OLD.water_cut / 100) + OLD.water_cut / 100) * (1 - OLD.water_cut / 100), 
+    SET oil_loss_ton = 
+		CASE 
+			WHEN water_cut = 100 OR (OLD.water_cut = 0 AND oil_density = 0) THEN 0
+			ELSE (oil_loss_ton * (oil_density * (1 - water_cut / 100) + water_cut / 100) / (1 - water_cut / 100)) * (1 - OLD.water_cut / 100) / (oil_density * (1 - OLD.water_cut / 100) + OLD.water_cut / 100) 
+		END, 
 		water_cut = last_available_water_cut,
 		mechanical_impurities = last_available_mechanical_impurities
 		WHERE well_id = OLD.well_id 
@@ -955,4 +963,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-01-29 20:33:29
+-- Dump completed on 2025-01-30 15:04:31
